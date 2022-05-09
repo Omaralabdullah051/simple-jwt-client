@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const inputStyle = {
     width: '100%',
     height: '30px',
@@ -16,20 +15,19 @@ const Login = () => {
         const password = event.target.password.value;
 
         fetch('http://localhost:5000/login', {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'content-type': 'application/json'
+                'Content-type': 'application/json'
             },
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({ email, password })
         })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.success){
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate('/orders');
-            }
-            console.log(data);
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem('accessToken', data.accessToken);
+                    navigate('/orders');
+                }
+            })
     }
 
     return (
